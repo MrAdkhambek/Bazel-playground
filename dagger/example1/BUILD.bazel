@@ -1,0 +1,16 @@
+load("@dagger//:workspace_defs.bzl", "dagger_rules")
+
+dagger_rules()
+
+java_binary(
+    name = "app",
+    srcs = [
+        "me/adkhambek/dagger/example/AppComponent.java",
+        "me/adkhambek/dagger/example/AppModule.java",
+        "me/adkhambek/dagger/example/Main.java",
+    ],
+    main_class = "me.adkhambek.dagger.example.Main",
+    deps = [
+        ":dagger",
+    ],
+)

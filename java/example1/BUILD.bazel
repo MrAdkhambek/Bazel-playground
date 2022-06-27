@@ -1,0 +1,8 @@
+java_binary(
+    name = "app",
+    srcs = [
+        "me/adkhambek/example/Main.java",
+    ],
+    main_class = "me.adkhambek.example.Main",
+    deps = [],
+)

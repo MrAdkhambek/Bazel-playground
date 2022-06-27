@@ -1,0 +1,9 @@
+load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary", "kt_jvm_library")
+
+kt_jvm_binary(
+    name = "app",
+    srcs = glob(["me/adkhambek/kotlin/example/Application.kt"]),
+    main_class = "me.adkhambek.kotlin.example.Application",
+    deps = [
+    ],
+)

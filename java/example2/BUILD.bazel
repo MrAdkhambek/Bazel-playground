@@ -1,0 +1,19 @@
+java_library(
+    name = "print-util",
+    srcs = [
+        "me/adkhambek/library/PrintUtil.java",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [],
+)
+
+java_binary(
+    name = "app",
+    srcs = [
+        "me/adkhambek/example2/Main.java",
+    ],
+    main_class = "me.adkhambek.example2.Main",
+    deps = [
+        "print-util",
+    ],
+)

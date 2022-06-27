@@ -1,0 +1,63 @@
+###########################################################################
+##  LOMBOK START
+###########################################################################
+java_library(
+    name = "lombok",
+    exported_plugins = [
+        ":lombok_plugin",
+    ],
+    visibility = ["//visibility:public"],
+    exports = [
+        "@maven//:org_projectlombok_lombok",
+    ],
+)
+
+java_plugin(
+    name = "lombok_plugin",
+    processor_class = "lombok.launch.AnnotationProcessorHider$AnnotationProcessor",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":lombok_jar",
+    ],
+)
+
+java_import(
+    name = "lombok_jar",
+    jars = [
+        "@maven//:v1/https/repo1.maven.org/maven2/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar",
+    ],
+)
+###########################################################################
+##  LOMBOK END
+###########################################################################
+
+###########################################################################
+##  KOTLIN START
+###########################################################################
+load("@io_bazel_rules_kotlin//kotlin:core.bzl", "define_kt_toolchain", "kt_compiler_plugin", "kt_kotlinc_options")
+load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_javac_options", "kt_jvm_import", "kt_jvm_library")
+load("@bazel_tools//tools/jdk:default_java_toolchain.bzl", "default_java_toolchain")
+
+JAVA_LANGUAGE_LEVEL = "11"
+
+KOTLIN_LANGUAGE_LEVEL = "1.6"
+
+define_kt_toolchain(
+    name = "kotlin_toolchain",
+    api_version = KOTLIN_LANGUAGE_LEVEL,  # "1.1", "1.2", "1.3", "1.4", "1.5", or "1.6"
+    jvm_target = JAVA_LANGUAGE_LEVEL,  # "1.6", "1.8", "9", "10", "11", "12", "13", "15", "16", or "17"
+    language_version = KOTLIN_LANGUAGE_LEVEL,  # "1.1", "1.2", "1.3", "1.4",  "1.5", or "1.6"
+)
+###########################################################################
+##  KOTLIN END
+###########################################################################
+
+###########################################################################
+#   Dagger2 START
+###########################################################################
+load("@dagger//:workspace_defs.bzl", "dagger_rules", "hilt_android_rules")
+
+dagger_rules()
+###########################################################################
+#   Dagger2 END
+###########################################################################
